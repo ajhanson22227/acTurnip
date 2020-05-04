@@ -15,8 +15,26 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: Text('Welcome to Flutter'),
         ),
-        body: Center(
-          child: Text('Hello World'),
+
+        body: Container(
+          padding: EdgeInsets.all(32),
+          child: Column(
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Icon(Icons.person, color: Colors.green, size: 30.0),
+                  
+                  Container(
+                    width: 120.0,
+                    //padding: EdgeInsets.only(left: 20, bottom: 10),
+                    child: TextField(
+                      keyboardType: TextInputType.number,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
