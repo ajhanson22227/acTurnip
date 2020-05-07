@@ -27,8 +27,13 @@ class MyCustomForm extends StatefulWidget{
 }
 
 class _MyCustomFormState extends State<MyCustomForm>{
+  final firstTextController = TextEditingController(); //user 1 text
+  final secondTextController = TextEditingController(); //user 2 text
+  var thirdTextController = TextEditingController(); //DEBUG VAR NOT FINAL.
   @override
   void dispose(){
+    firstTextController.dispose();
+    secondTextController.dispose();
     super.dispose();
   }
 
@@ -36,12 +41,87 @@ class _MyCustomFormState extends State<MyCustomForm>{
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title: Text('User Shmoozer'),
+        title: Text('Tip Calculations'),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Text('Hello World'),
+      body: Center(
+        child: Column(
+          children: <Widget>[
+
+
+
+            //1st row, 1st user
+            Row(
+              children: <Widget>[
+                Container(
+                  width: 150,
+                  margin: const EdgeInsets.only(left: 20.0),
+                  child: TextField(
+                    controller: firstTextController,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      icon: Icon(Icons.people, color: Colors.blue,),
+                    ),
+                    
+                  ),
+                ),
+              ],
+            ),
+
+
+
+            //2nd row, 2nd user
+            Row(
+              children: <Widget>[
+                Container(
+                  width: 150,
+                  margin: const EdgeInsets.only(left: 20.0),
+                  child: TextField(
+                    controller: secondTextController,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      icon: Icon(Icons.people, color: Colors.green,),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+
+
+            //3 Text Field for sum on change, DEBUG
+            Row(
+              children: <Widget>[
+                Container(
+                  width: 150,
+                  margin: const EdgeInsets.only(left: 20.0),
+                  child: TextField(
+                    controller: thirdTextController,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      icon: Icon(Icons.cake, color: Colors.red,),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+
+          ],
         ),
+      ),
+
+
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          int sum = int.parse(firstTextController.text) + int.parse(secondTextController.text);
+          return showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                content: Text(sum.toString()),
+              );
+            }
+          );
+        },
+      ),
     );
   }
 }
