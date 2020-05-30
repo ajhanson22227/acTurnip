@@ -3,7 +3,6 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:ac_turnip/TurnipTips/tip_calculator.dart';
 
 void main() => runApp(MyApp());
